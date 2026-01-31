@@ -15,7 +15,7 @@ Start by understanding the current project context, then ask questions one at a 
 
 **Understanding the idea:**
 - Check out the current project state first (files, docs, recent commits)
-- Ask questions one at a time to refine the idea
+- Use the question tool to ask questions one at a time to refine the idea
 - Prefer multiple choice questions when possible, but open-ended is fine too
 - Only one question per message - if a topic needs more exploration, break it into multiple questions
 - Focus on understanding: purpose, constraints, success criteria
@@ -40,7 +40,7 @@ Start by understanding the current project context, then ask questions one at a 
 - Commit the design document to git
 
 **Implementation (if continuing):**
-- Ask: "Ready to set up for implementation?"
+- Use the question tool to ask: "Ready to set up for implementation?" (Yes/No)
 - Use superpowers:using-git-worktrees to create isolated workspace
 - Use superpowers:writing-plans to create detailed implementation plan
 

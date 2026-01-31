@@ -33,7 +33,7 @@ WHEN receiving code review feedback:
 
 **INSTEAD:**
 - Restate the technical requirement
-- Ask clarifying questions
+- Use the question tool to ask clarifying questions
 - Push back with technical reasoning if wrong
 - Just start working (actions > words)
 
@@ -42,7 +42,7 @@ WHEN receiving code review feedback:
 ```
 IF any item is unclear:
   STOP - do not implement anything yet
-  ASK for clarification on unclear items
+  Use question tool to ASK for clarification on unclear items
 
 WHY: Items may be related. Partial understanding = wrong implementation.
 ```

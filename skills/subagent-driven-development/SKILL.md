@@ -39,8 +39,9 @@ digraph when_to_use {
 
 **Before starting, check if user has already set a commit preference this session.**
 
-**If not set, ask:**
-> "Should subagents commit after each task? (Yes/No)"
+**If not set, use the question tool to ask:**
+> "Should subagents commit after each task?"
+> Options: Yes, No
 
 **If No (or previously set to No):**
 - Pass `COMMIT_PREFERENCE: no` to all subagents

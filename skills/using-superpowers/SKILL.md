@@ -85,3 +85,39 @@ The skill itself tells you which.
 ## User Instructions
 
 Instructions say WHAT, not HOW. "Add X" or "Fix Y" doesn't mean skip workflows.
+
+## Asking Questions (MUST Use the Question Tool)
+
+**CRITICAL:** When you need the user to answer a question, you MUST use the `question` tool.
+
+**Why this matters:**
+- Users often run multiple agents in parallel
+- Without the question tool, users have no way to know an agent needs attention
+- The question tool **triggers a notification** so the user sees your question promptly
+- Text/markdown questions do NOT notify - the user won't see them until they check
+
+**The question tool allows you to:**
+- Gather user preferences or requirements
+- Clarify ambiguous instructions
+- Get decisions on implementation choices
+- Offer choices about what direction to take
+
+**When to use the question tool:**
+- Clarification needed before proceeding
+- User must make a decision or choose between options
+- Presenting structured choices (commit preference, execution options, etc.)
+- **When you've completed work or reached a stopping point** (see below)
+
+**When NOT to use:**
+- Rhetorical questions you're about to answer yourself
+- Don't ask gratuitously - unnecessary questions add delay to task completion
+
+**Task completion - MANDATORY:**
+When you've completed the requested work or reached any stopping point where you have nothing left to do, you MUST use the question tool to notify the user. Ask whether they are satisfied or have feedback/follow-up requests. Without this, the user won't know you're idle and time is wasted.
+
+**Formatting questions:**
+- You can output detailed context in markdown, then use the question tool for the actual prompt
+- Prefer multiple choice when options are clear and limited
+- Include brief descriptions for each option
+- Users can select from options OR type a custom answer
+- Use `multiple: true` when the user can select more than one option

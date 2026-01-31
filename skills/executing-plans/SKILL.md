@@ -57,7 +57,7 @@ After all tasks complete and verified:
 - You don't understand an instruction
 - Verification fails repeatedly
 
-**Ask for clarification rather than guessing.**
+**Use the question tool to ask for clarification rather than guessing.**
 
 ## When to Revisit Earlier Steps
 
@@ -65,7 +65,7 @@ After all tasks complete and verified:
 - Partner updates the plan based on your feedback
 - Fundamental approach needs rethinking
 
-**Don't force through blockers** - stop and ask.
+**Don't force through blockers** - stop and use the question tool to ask.
 
 ## Remember
 - Review plan critically first

@@ -26,7 +26,7 @@ Task tool (general-purpose):
     - Dependencies or assumptions
     - Anything unclear in the task description
 
-    **Ask them now.** Raise any concerns before starting work.
+    **Use the question tool to ask them now.** Raise any concerns before starting work.
 
     ## Your Job
 
@@ -43,7 +43,7 @@ Task tool (general-purpose):
 
     Work from: [directory]
 
-    **While you work:** If you encounter something unexpected or unclear, **ask questions**.
+    **While you work:** If you encounter something unexpected or unclear, **use the question tool to ask**.
     It's always OK to pause and clarify. Don't guess or make assumptions.
 
     ## Before Reporting Back: Self-Review

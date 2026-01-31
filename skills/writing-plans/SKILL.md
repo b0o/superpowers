@@ -15,8 +15,9 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
 
 ## Commit Preference (Ask Upfront)
 
-**Before starting, ask the user:**
-> "Should commits be included as steps in this plan? (Yes/No)"
+**Before starting, use the question tool to ask:**
+> "Should commits be included as steps in this plan?"
+> Options: Yes, No
 
 **If No:**
 - Remove all commit steps from the plan
@@ -112,15 +113,13 @@ git commit -m "feat: add specific feature"
 
 ## Execution Handoff
 
-After saving the plan, offer execution choice:
+After saving the plan, use the question tool to offer execution choice:
 
-**"Plan complete and saved to `docs/plans/<filename>.md`. Two execution options:**
+**Question:** "Plan complete and saved. How would you like to execute it?"
 
-**1. Subagent-Driven (this session)** - I dispatch fresh subagent per task, review between tasks, fast iteration
-
-**2. Parallel Session (separate)** - Open new session with executing-plans, batch execution with checkpoints
-
-**Which approach?"**
+**Options:**
+1. **Subagent-Driven (this session)** - I dispatch fresh subagent per task, review between tasks, fast iteration
+2. **Parallel Session (separate)** - Open new session with executing-plans, batch execution with checkpoints
 
 **If Subagent-Driven chosen:**
 - **REQUIRED SUB-SKILL:** Use superpowers:subagent-driven-development
