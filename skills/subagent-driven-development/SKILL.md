@@ -35,6 +35,23 @@ digraph when_to_use {
 - Two-stage review after each task: spec compliance first, then code quality
 - Faster iteration (no human-in-loop between tasks)
 
+## Commit Preference (Check First)
+
+**Before starting, check if user has already set a commit preference this session.**
+
+**If not set, ask:**
+> "Should subagents commit after each task? (Yes/No)"
+
+**If No (or previously set to No):**
+- Pass `COMMIT_PREFERENCE: no` to all subagents
+- Subagents MUST NOT commit
+- This applies for the **entire session**, including any future skill invocations
+- Only override if user **explicitly gives permission** later
+
+**If Yes (or user doesn't specify):**
+- Pass `COMMIT_PREFERENCE: yes` to all subagents
+- Subagents commit after successful implementation
+
 ## The Process
 
 ```dot
@@ -46,7 +63,7 @@ digraph process {
         "Dispatch implementer subagent (./implementer-prompt.md)" [shape=box];
         "Implementer subagent asks questions?" [shape=diamond];
         "Answer questions, provide context" [shape=box];
-        "Implementer subagent implements, tests, commits, self-reviews" [shape=box];
+        "Implementer subagent implements, tests, (commits if allowed), self-reviews" [shape=box];
         "Dispatch spec reviewer subagent (./spec-reviewer-prompt.md)" [shape=box];
         "Spec reviewer subagent confirms code matches spec?" [shape=diamond];
         "Implementer subagent fixes spec gaps" [shape=box];
@@ -65,8 +82,8 @@ digraph process {
     "Dispatch implementer subagent (./implementer-prompt.md)" -> "Implementer subagent asks questions?";
     "Implementer subagent asks questions?" -> "Answer questions, provide context" [label="yes"];
     "Answer questions, provide context" -> "Dispatch implementer subagent (./implementer-prompt.md)";
-    "Implementer subagent asks questions?" -> "Implementer subagent implements, tests, commits, self-reviews" [label="no"];
-    "Implementer subagent implements, tests, commits, self-reviews" -> "Dispatch spec reviewer subagent (./spec-reviewer-prompt.md)";
+    "Implementer subagent asks questions?" -> "Implementer subagent implements, tests, (commits if allowed), self-reviews" [label="no"];
+    "Implementer subagent implements, tests, (commits if allowed), self-reviews" -> "Dispatch spec reviewer subagent (./spec-reviewer-prompt.md)";
     "Dispatch spec reviewer subagent (./spec-reviewer-prompt.md)" -> "Spec reviewer subagent confirms code matches spec?";
     "Spec reviewer subagent confirms code matches spec?" -> "Implementer subagent fixes spec gaps" [label="no"];
     "Implementer subagent fixes spec gaps" -> "Dispatch spec reviewer subagent (./spec-reviewer-prompt.md)" [label="re-review"];
@@ -92,7 +109,11 @@ digraph process {
 
 ```
 You: I'm using Subagent-Driven Development to execute this plan.
+You: Should subagents commit after each task? (Yes/No)
 
+User: Yes
+
+[COMMIT_PREFERENCE: yes for this session]
 [Read plan file once: docs/plans/feature-plan.md]
 [Extract all 5 tasks with full text and context]
 [Create TodoWrite with all tasks]
@@ -111,7 +132,7 @@ Implementer: "Got it. Implementing now..."
   - Implemented install-hook command
   - Added tests, 5/5 passing
   - Self-review: Found I missed --force flag, added it
-  - Committed
+  - Committed (because COMMIT_PREFERENCE: yes)
 
 [Dispatch spec compliance reviewer]
 Spec reviewer: ✅ Spec compliant - all requirements met, nothing extra
@@ -131,7 +152,7 @@ Implementer:
   - Added verify/repair modes
   - 8/8 tests passing
   - Self-review: All good
-  - Committed
+  - Committed (because COMMIT_PREFERENCE: yes)
 
 [Dispatch spec compliance reviewer]
 Spec reviewer: ❌ Issues:

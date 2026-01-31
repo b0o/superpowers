@@ -16,6 +16,8 @@ Task tool (general-purpose):
 
     [Scene-setting: where this fits, dependencies, architectural context]
 
+    COMMIT_PREFERENCE: [yes/no]
+
     ## Before You Begin
 
     If you have questions about:
@@ -32,9 +34,12 @@ Task tool (general-purpose):
     1. Implement exactly what the task specifies
     2. Write tests (following TDD if task says to)
     3. Verify implementation works
-    4. Commit your work
+    4. Commit your work (ONLY if COMMIT_PREFERENCE is "yes" - if "no", skip this step)
     5. Self-review (see below)
     6. Report back
+
+    **IMPORTANT:** If COMMIT_PREFERENCE is "no", do NOT commit. This is a session-wide preference
+    set by the user. Only commit if explicitly allowed.
 
     Work from: [directory]
 

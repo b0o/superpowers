@@ -7,11 +7,26 @@ description: Use when you have a spec or requirements for a multi-step task, bef
 
 ## Overview
 
-Write comprehensive implementation plans assuming the engineer has zero context for our codebase and questionable taste. Document everything they need to know: which files to touch for each task, code, testing, docs they might need to check, how to test it. Give them the whole plan as bite-sized tasks. DRY. YAGNI. TDD. Frequent commits.
+Write comprehensive implementation plans assuming the engineer has zero context for our codebase and questionable taste. Document everything they need to know: which files to touch for each task, code, testing, docs they might need to check, how to test it. Give them the whole plan as bite-sized tasks. DRY. YAGNI. TDD.
 
 Assume they are a skilled developer, but know almost nothing about our toolset or problem domain. Assume they don't know good test design very well.
 
 **Announce at start:** "I'm using the writing-plans skill to create the implementation plan."
+
+## Commit Preference (Ask Upfront)
+
+**Before starting, ask the user:**
+> "Should commits be included as steps in this plan? (Yes/No)"
+
+**If No:**
+- Remove all commit steps from the plan
+- Replace "frequent commits" guidance with "frequent saves/checkpoints"
+- This preference applies for the **entire session**, including any future skill invocations
+- The agent MUST NOT commit unless the user **explicitly gives permission** later
+
+**If Yes (or user doesn't specify):**
+- Include commit steps as normal
+- Follow standard "frequent commits" guidance
 
 **Context:** This should be run in a dedicated worktree (created by brainstorming skill).
 
@@ -24,7 +39,7 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
 - "Run it to make sure it fails" - step
 - "Implement the minimal code to make the test pass" - step
 - "Run the tests and make sure they pass" - step
-- "Commit" - step
+- "Commit" - step (only if user opted in to commits)
 
 ## Plan Document Header
 
@@ -79,7 +94,7 @@ def function(input):
 Run: `pytest tests/path/test.py::test_name -v`
 Expected: PASS
 
-**Step 5: Commit**
+**Step 5: Commit** *(only if user opted in to commits)*
 
 ```bash
 git add tests/path/test.py src/path/file.py
@@ -92,7 +107,8 @@ git commit -m "feat: add specific feature"
 - Complete code in plan (not "add validation")
 - Exact commands with expected output
 - Reference relevant skills with @ syntax
-- DRY, YAGNI, TDD, frequent commits
+- DRY, YAGNI, TDD
+- Respect user's commit preference (session-wide)
 
 ## Execution Handoff
 
