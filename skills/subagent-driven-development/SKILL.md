@@ -35,9 +35,11 @@ digraph when_to_use {
 - Two-stage review after each task: spec compliance first, then code quality
 - Faster iteration (no human-in-loop between tasks)
 
-## Commit Preference (Check First)
+## Session Preferences (Check First)
 
-**Before starting, check if user has already set a commit preference this session** (e.g., by deep-work-session).
+**Before starting, check if session preferences were already set** (e.g., by deep-work-session).
+
+### Commit Preference
 
 **If already set:** Use that preference. Don't ask again.
 
@@ -54,6 +56,20 @@ digraph when_to_use {
 **If Yes (or user doesn't specify):**
 - Pass `COMMIT_PREFERENCE: yes` to all subagents
 - Subagents commit after successful implementation
+
+### Question Style
+
+**If question style is set (e.g., `front-loaded` or `minimal`):**
+- Pass `QUESTION_STYLE: [value]` to all subagents
+- Subagents should only ask the controller questions if genuinely blocked
+- Controller should only ask user questions if genuinely blocked
+- Do NOT ask for permission between tasks - proceed autonomously
+
+**If question style is `checkpoint` or `collaborative`:**
+- Subagents may ask clarifying questions more freely
+- Controller may check in with user between tasks if helpful
+
+**If not set:** Default to proceeding without unnecessary check-ins (this skill is designed for autonomous execution)
 
 ## The Process
 

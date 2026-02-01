@@ -13,6 +13,20 @@ Load plan, review critically, execute tasks in batches, report for review betwee
 
 **Announce at start:** "I'm using the executing-plans skill to implement this plan."
 
+## Question Style (Check First)
+
+**Before starting, check if a question style was set this session** (e.g., by deep-work-session).
+
+| Question Style | Batch Checkpoint Behavior |
+|----------------|---------------------------|
+| `front-loaded` | Skip checkpoints. Continue autonomously. Only stop if truly blocked. |
+| `minimal` | Skip checkpoints. Continue autonomously. Only stop if truly blocked. |
+| `checkpoint` | Pause at batch boundaries for feedback (default behavior). |
+| `collaborative` | Pause at batch boundaries for feedback. |
+| Not set | Pause at batch boundaries for feedback (default behavior). |
+
+**If front-loaded or minimal:** Execute all tasks continuously. Report progress but don't wait for feedback between batches. Only use the question tool if genuinely blocked.
+
 ## The Process
 
 ### Step 1: Load and Review Plan
@@ -22,7 +36,7 @@ Load plan, review critically, execute tasks in batches, report for review betwee
 4. If no concerns: Create TodoWrite and proceed
 
 ### Step 2: Execute Batch
-**Default: First 3 tasks**
+**Default batch size: 3 tasks** (but execute all continuously if question style is front-loaded/minimal)
 
 For each task:
 1. Mark as in_progress
@@ -30,14 +44,21 @@ For each task:
 3. Run verifications as specified
 4. Mark as completed
 
-### Step 3: Report
-When batch complete:
+### Step 3: Report (or Continue)
+
+**If question style is front-loaded or minimal:**
+- Log progress briefly but DO NOT stop for feedback
+- Continue immediately to next batch
+- Only stop if genuinely blocked
+
+**Otherwise (checkpoint, collaborative, or not set):**
 - Show what was implemented
 - Show verification output
 - Say: "Ready for feedback."
+- Wait for user input before continuing
 
 ### Step 4: Continue
-Based on feedback:
+Based on feedback (if you waited for it):
 - Apply changes if needed
 - Execute next batch
 - Repeat until complete
@@ -72,7 +93,8 @@ After all tasks complete and verified:
 - Follow plan steps exactly
 - Don't skip verifications
 - Reference skills when plan says to
-- Between batches: just report and wait
+- **Respect question style:** If front-loaded/minimal, continue autonomously without asking for feedback between batches
+- If question style allows checkpoints: report and wait between batches
 - Stop when blocked, don't guess
 - Never start implementation on main/master branch without explicit user consent
 
