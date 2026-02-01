@@ -13,9 +13,13 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
 
 **Announce at start:** "I'm using the writing-plans skill to create the implementation plan."
 
-## Commit Preference (Ask Upfront)
+## Commit Preference (Check or Ask)
 
-**Before starting, use the question tool to ask:**
+**First, check if a commit preference was already set this session** (e.g., by deep-work-session).
+
+**If already set:** Use that preference. Don't ask again.
+
+**If not set, use the question tool to ask:**
 > "Should commits be included as steps in this plan?"
 > Options: Yes, No
 

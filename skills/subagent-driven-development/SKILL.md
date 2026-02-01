@@ -37,7 +37,9 @@ digraph when_to_use {
 
 ## Commit Preference (Check First)
 
-**Before starting, check if user has already set a commit preference this session.**
+**Before starting, check if user has already set a commit preference this session** (e.g., by deep-work-session).
+
+**If already set:** Use that preference. Don't ask again.
 
 **If not set, use the question tool to ask:**
 > "Should subagents commit after each task?"
