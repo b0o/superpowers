@@ -88,7 +88,11 @@ Instructions say WHAT, not HOW. "Add X" or "Fix Y" doesn't mean skip workflows.
 
 ## Asking Questions (MUST Use the Question Tool)
 
-**CRITICAL:** When you need the user to answer a question, you MUST use the `question` tool.
+<EXTREMELY-IMPORTANT>
+ANY question that expects a user response MUST use the question tool. No exceptions.
+
+Ending a message with a question mark and waiting for the user to respond is FORBIDDEN unless you use the question tool.
+</EXTREMELY-IMPORTANT>
 
 **Why this matters:**
 - Users often run multiple agents in parallel
@@ -96,28 +100,61 @@ Instructions say WHAT, not HOW. "Add X" or "Fix Y" doesn't mean skip workflows.
 - The question tool **triggers a notification** so the user sees your question promptly
 - Text/markdown questions do NOT notify - the user won't see them until they check
 
-**The question tool allows you to:**
-- Gather user preferences or requirements
-- Clarify ambiguous instructions
-- Get decisions on implementation choices
-- Offer choices about what direction to take
+### What Counts as "Expecting a Response"
 
-**When to use the question tool:**
+If you write something and then WAIT for the user to reply before continuing, you are expecting a response. You MUST use the question tool.
+
+**WRONG - markdown question without tool:**
+```
+Here's my proposed design...
+
+Does this look right so far?
+```
+❌ User gets no notification. Must manually check. May not see for hours.
+
+**RIGHT - question tool:**
+```
+Here's my proposed design...
+
+[Uses question tool: "Does this look right so far?" with Yes/No options]
+```
+✅ User gets notification. Can respond immediately or from anywhere.
+
+### When You MUST Use the Question Tool
+
+- **ANY question you want the user to answer** - "Does this look right?" "Should I continue?" "Which option?"
 - Clarification needed before proceeding
 - User must make a decision or choose between options
 - Presenting structured choices (commit preference, execution options, etc.)
+- Validating a design, approach, or output
 - **When you've completed work or reached a stopping point** (see below)
 
-**When NOT to use:**
-- Rhetorical questions you're about to answer yourself
+### When NOT to Use the Question Tool
+
+- Rhetorical questions you're about to answer yourself in the same message
 - Don't ask gratuitously - unnecessary questions add delay to task completion
 
-**Task completion - MANDATORY:**
+**If you're not sure:** Use the question tool. False positives (unnecessary notification) are better than false negatives (user doesn't see your question).
+
+### Task Completion - MANDATORY
+
 When you've completed the requested work or reached any stopping point where you have nothing left to do, you MUST use the question tool to notify the user. Ask whether they are satisfied or have feedback/follow-up requests. Without this, the user won't know you're idle and time is wasted.
 
-**Formatting questions:**
+### Formatting Questions
+
 - You can output detailed context in markdown, then use the question tool for the actual prompt
 - Prefer multiple choice when options are clear and limited
 - Include brief descriptions for each option
 - Users can select from options OR type a custom answer
 - Use `multiple: true` when the user can select more than one option
+
+### Red Flags - You're About to Violate This Rule
+
+If you catch yourself about to:
+- End a message with "?" and wait
+- Write "Let me know if..." and stop
+- Ask "Does this look right?" in markdown
+- Write "Should I continue?" without the tool
+- Present options in text and wait for selection
+
+**STOP. Use the question tool.**
