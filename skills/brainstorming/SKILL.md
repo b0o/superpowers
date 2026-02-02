@@ -40,9 +40,31 @@ Start by understanding the current project context, then ask questions one at a 
 - Commit the design document to git (only if user opted in to commits this session)
 
 **Implementation (if continuing):**
-- Use the question tool to ask: "Ready to set up for implementation?" (Yes/No)
+
+Use the question tool to ask how to proceed:
+
+> "Ready to proceed with implementation?"
+> 
+> Options:
+> 1. **Start a Deep Work session** - Set up for autonomous implementation with upfront preferences
+> 2. **Interactive implementation** - Proceed step by step with regular checkpoints
+> 3. **Review design first** - Let me review the design doc before proceeding
+
+**If Deep Work session chosen:**
+- **REQUIRED SUB-SKILL:** Use superpowers:deep-work-session
+- The deep-work-session skill will gather preferences (commits, question style, scope)
+- Then proceed to worktree setup and planning with those preferences already set
+- Implementation will be autonomous based on front-loaded decisions
+
+**If Interactive implementation chosen:**
 - Use superpowers:using-git-worktrees to create isolated workspace
 - Use superpowers:writing-plans to create detailed implementation plan
+- Proceed with regular checkpoints and user involvement
+
+**If Review design first chosen:**
+- Point user to the saved design document path
+- Wait for them to confirm they're ready to proceed
+- Then offer the implementation options again
 
 ## Key Principles
 
