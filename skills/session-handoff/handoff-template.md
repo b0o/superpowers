@@ -1,8 +1,8 @@
-# Deep Work Session Handoff Template
+# Session Handoff Template
 
 Use this template when writing a handoff document for session continuation.
 
-Save to: `docs/deep-work-handoffs/YYYY-MM-DD-HH-MM-<topic>.md`
+Save to: `docs/session-handoffs/YYYY-MM-DD-HH-MM-<topic>.md`
 
 ---
 
@@ -28,20 +28,21 @@ You are not "continuing" - you are enabling a fresh agent to pick up where you l
 ---
 
 ```markdown
-# Deep Work Session Handoff: [Topic]
+# Session Handoff: [Topic]
 
 **Created:** [timestamp]
 **Context usage at handoff:** [X%]
 **Reason for handoff:** [approaching context limit / user requested pause / etc.]
+**Session type:** [deep work / interactive / other]
 
-## Session Configuration (MUST complete)
+## Session Configuration (MUST complete if applicable)
 
-You MUST restore these settings. You MUST NOT re-ask the user.
+You MUST restore these settings if they were set. You MUST NOT re-ask the user.
 
-- **Commit preference:** [auto / ask / batch / none]
-- **Question style:** [front-loaded / minimal / checkpoint / collaborative]
+- **Commit preference:** [auto / ask / batch / none / not set]
+- **Question style:** [front-loaded / minimal / checkpoint / collaborative / not set]
 - **Scope boundaries:** [what areas to focus on, what to avoid]
-- **Planned workflow:** [skill1 → skill2 → skill3]
+- **Planned workflow:** [skill1 → skill2 → skill3] (if deep work or planned session)
 - **Current position in workflow:** [which skill, which phase]
 
 ## User Preferences Discovered (MUST complete)
@@ -132,7 +133,7 @@ When resuming, the agent MUST:
 Reference documents that may be useful:
 - Plan: `docs/plans/[plan-file].md`
 - Design: `docs/plans/[design-file].md`
-- Previous handoffs: `docs/deep-work-handoffs/[prior-handoff].md` (if chained)
+- Previous handoffs: `docs/session-handoffs/[prior-handoff].md` (if chained)
 ```
 
 ---

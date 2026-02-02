@@ -176,94 +176,30 @@ These preferences persist for the entire session. Other skills should check if t
 
 ## Context Management
 
-Deep work sessions may exceed the context window. A hook injects context usage updates at 25%, 50%, 75%, then every 5% until 95%, then every 1% until 100%. You can also call the `checklimits` tool proactively.
+Deep work sessions may exceed the context window.
 
-### CRITICAL: Understanding Context Loss
+**REQUIRED SUB-SKILL:** Use superpowers:session-handoff for all context management.
 
-**The new session will have ZERO context from the current session.**
+When approaching context limits (75-85%), the session-handoff skill handles:
+- Writing comprehensive handoff documents
+- Guiding the user to continue in a new session
+- Ensuring no context is lost
 
-This is not like "pausing" - this is a complete reset. The next agent:
-- Has no memory of this conversation
-- Does not know what files you looked at
-- Does not know what decisions you made or why
-- Does not know what the user said
-- Does not know what you learned about the codebase
-- Only knows what is written in the handoff document
+**Key points for deep work:**
+- Target winddown at 80-90% context usage
+- Include all deep work preferences in the handoff document
+- Use the deep work continuation prompt from session-handoff
 
-**If it's not in the handoff document, it does not exist for the next agent.**
-
-You are not "handing off to yourself" - you are writing instructions for a stranger who happens to have the same capabilities. Everything you currently "just know" from this session MUST be explicitly written down or it is lost forever.
-
-### Monitoring Context Usage
-
-At each context update, assess:
-- How much work remains?
-- Is there risk of running out before completing the task?
-- Early updates (25%, 50%) usually don't have enough info to judge
-
-### When to Wind Down
-
-**Target: Start winddown at 80-90% context usage.**
-
-- Not too early (waste context capacity)
-- Not too late (need context for winddown steps, and model performance degrades after 90-95%)
-
-**Trigger winddown when:**
-- Context usage is 75-85% AND
-- Remaining work likely exceeds remaining context AND
-- You can reach a reasonable stopping point
-
-### Winddown Process
-
-1. **Finish current atomic task** - Complete to a stopping point, don't leave things half-done
-2. **Write handoff document** - You MUST use template in `./handoff-template.md`. You MUST NOT skip sections. You MUST NOT write brief summaries assuming the next agent "will figure it out."
-3. **Save to predictable location** - `docs/deep-work-handoffs/YYYY-MM-DD-HH-MM-<topic>.md`
-4. **Ask user to continue** - Use question tool:
-
-> "I'm approaching my context limit. I've written a detailed handoff document ready to continue in a new session. Ready to continue?"
-> Options: Yes, continue in new session / Not yet, I have questions
-
-5. **Provide continuation prompt:**
-
-```
-I'm continuing a previous deep work session. Use the deep-work-session skill to continue. The handoff document is at:
-docs/deep-work-handoffs/[filename].md
-
-Read that file and continue the deep work session autonomously.
-```
-
-The user will copy this into a new session.
-
-## Continuing a Session
+## Continuing a Deep Work Session
 
 When the user says they're continuing a deep work session and provides a handoff file path:
 
-### CRITICAL: You Have No Prior Context
+**REQUIRED SUB-SKILL:** Use superpowers:session-handoff to read and restore from the handoff document.
 
-**You are not "continuing" - you are starting fresh with a briefing document.**
+After restoring context from the handoff:
 
-You have no memory of the previous session. You do not know:
-- What the user said before
-- What was tried and failed
-- What decisions were made or why
-- What the user's preferences are
-- What files are relevant
-
-The handoff document is your ONLY source of context. You MUST read it completely and trust its contents.
-
-### Step 1: Read Handoff Document
-
-You MUST read the file completely before taking any action. It contains:
-- All session preferences (commits, questions, scope, workflow)
-- Task context and progress
-- What was done, what remains
-- Technical decisions and reasoning
-- Open questions or blockers
-- User preferences and quirks
-
-### Step 2: Restore Session State
-
-You MUST NOT re-ask preferences. The handoff document has them. Announce:
+1. **Verify deep work preferences are restored** - commits, question style, scope, workflow
+2. **Announce the restored configuration:**
 
 ```
 Continuing Deep Work session from [handoff file].
@@ -278,42 +214,21 @@ Progress: [X of Y tasks complete]
 Resuming from: [current task]
 ```
 
-### Step 3: Resume Autonomously
-
-- Pick up exactly where the previous session left off
-- Follow the same workflow and preferences
-- Continue with maximum autonomy (preferences already gathered)
-
-### Step 4: Handle Accumulated Context
-
-If this is a continuation of a continuation (chain of handoffs):
-- The handoff document should reference prior handoffs if relevant
-- Consolidate understanding, don't re-read entire chain
-- Focus on current state and remaining work
+3. **Resume autonomously** - preferences already gathered, continue with maximum autonomy
 
 ## Red Flags
 
 **MUST NOT:**
-- Write a sparse handoff document - the next agent has ZERO context from your session
-- Assume the next agent "will figure it out" - it will not, it cannot
-- Skip sections in the handoff template - every MUST section is required
-- Write vague next steps like "continue implementing" - be specific
 - Re-ask preferences when continuing from a handoff - trust the document
-- Ignore context usage warnings until it's too late to write a proper handoff
-
-**SHOULD NOT:**
 - Start deep work session for simple questions
 - Skip preference gathering ("I'll just use defaults")
 - Forget to pass session context to downstream skills
 - Interrupt during autonomous work unless truly blocked
 - Ask questions that were already answered in setup
-- Start winddown too early (wasting context) or too late (can't complete handoff)
 
 **MUST:**
 - Ask "Deep Work or interactive?" when uncertain about user intent
-- Write handoff documents as if explaining to a stranger (because you are)
-- Include the "why" for every technical decision, not just the "what"
-- Capture user preferences and quirks explicitly
+- Use session-handoff skill when approaching context limits
 - Monitor context usage and plan winddown at 80-90%
 
 **SHOULD:**
@@ -325,9 +240,12 @@ If this is a continuation of a continuation (chain of handoffs):
 
 ## Integration
 
+**Required sub-skills:**
+- `session-handoff` - for context management and session continuity
+
 **Skills that should check for existing session preferences:**
-- `writing-plans` - check `COMMIT_PREFERENCE` before asking
-- `subagent-driven-development` - check `COMMIT_PREFERENCE` before asking
+- `writing-plans` - check `COMMIT_PREFERENCE` and `QUESTION_STYLE` before asking
+- `subagent-driven-development` - check `COMMIT_PREFERENCE` and `QUESTION_STYLE` before asking
 - `brainstorming` - adjust verbosity based on `QUESTION_STYLE`
 - `executing-plans` - respect `COMMIT_PREFERENCE` and `QUESTION_STYLE`
 
