@@ -117,7 +117,21 @@ git commit -m "feat: add specific feature"
 
 ## Execution Handoff
 
-After saving the plan, use the question tool to offer execution choice:
+After saving the plan, check the session's question style before asking about execution.
+
+### If Question Style is Front-Loaded or Minimal (Deep Work Session)
+
+**Do NOT ask about execution method.** Proceed directly:
+
+- **REQUIRED SUB-SKILL:** Use superpowers:subagent-driven-development
+- Stay in this session, execute autonomously
+- The user has already committed to autonomous execution by choosing deep work
+
+Just announce: "Plan saved. Proceeding with subagent-driven execution."
+
+### Otherwise (Interactive Mode or No Session Context)
+
+Use the question tool to offer execution choice:
 
 **Question:** "Plan complete and saved. How would you like to execute it?"
 
