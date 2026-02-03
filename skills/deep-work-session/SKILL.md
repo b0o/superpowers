@@ -129,7 +129,7 @@ Does this workflow look right?
 | Refactoring | writing-plans → executing-plans |
 | Exploration | brainstorming only |
 
-### Step 4: Confirm and Hand Off
+### Step 4: Confirm and Begin Front-Loaded Work
 
 Summarize the session configuration:
 
@@ -142,6 +142,34 @@ Deep Work session configured:
 
 Starting with brainstorming...
 ```
+
+Now proceed with the front-loaded work (brainstorming, planning) as configured.
+
+### Step 5: Before Implementation - Fresh Session Option
+
+**After all front-loaded work is complete** (brainstorming done, plan written) but **before autonomous implementation begins**, use the question tool to ask:
+
+> "Planning complete. Implementation is ready to begin. How would you like to proceed?"
+>
+> Options:
+> 1. **Continue in this session** - Start implementation now
+> 2. **Fresh session for implementation** - Hand off to maximize context for implementation
+
+**Why offer this?**
+- Brainstorming and planning can consume significant context
+- Implementation benefits from maximum available context
+- A fresh session starts with full context capacity
+- All decisions are captured in the plan, so nothing is lost
+
+**If "Fresh session for implementation" chosen:**
+1. Use superpowers:session-handoff to write a comprehensive handoff document
+2. Include all deep work preferences AND the completed plan
+3. The handoff should note: "Planning complete. Ready for implementation phase."
+4. Provide the continuation prompt for starting implementation in a fresh session
+
+**If "Continue in this session" chosen:**
+- Proceed directly to implementation (subagent-driven-development or executing-plans)
+- No handoff needed
 
 ## Context Propagation
 

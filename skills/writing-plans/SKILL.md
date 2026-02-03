@@ -117,17 +117,27 @@ git commit -m "feat: add specific feature"
 
 ## Execution Handoff
 
-After saving the plan, check the session's question style before asking about execution.
+After saving the plan, check the session's question style before deciding how to proceed.
 
 ### If Question Style is Front-Loaded or Minimal (Deep Work Session)
 
-**Do NOT ask about execution method.** Proceed directly:
+Offer the fresh session option (planning may have consumed significant context):
 
+**Question:** "Plan complete and saved. How would you like to proceed with implementation?"
+
+**Options:**
+1. **Continue in this session** - Start implementation now with subagent-driven execution
+2. **Fresh session for implementation** - Hand off to maximize context for implementation
+
+**If "Continue in this session" chosen:**
 - **REQUIRED SUB-SKILL:** Use superpowers:subagent-driven-development
 - Stay in this session, execute autonomously
-- The user has already committed to autonomous execution by choosing deep work
 
-Just announce: "Plan saved. Proceeding with subagent-driven execution."
+**If "Fresh session for implementation" chosen:**
+- **REQUIRED SUB-SKILL:** Use superpowers:session-handoff
+- Write comprehensive handoff document including all deep work preferences and the plan
+- Note in handoff: "Planning complete. Ready for implementation phase."
+- Provide continuation prompt for fresh session
 
 ### Otherwise (Interactive Mode or No Session Context)
 
