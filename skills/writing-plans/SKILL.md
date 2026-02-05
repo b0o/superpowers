@@ -101,9 +101,11 @@ Expected: PASS
 
 **Step 5: Commit** *(only if user opted in to commits)*
 
+Use superpowers:making-commits for commit format and mechanics.
+
 ```bash
 git add tests/path/test.py src/path/file.py
-git commit -m "feat: add specific feature"
+git commit -m "feat(scope): add specific feature"
 ```
 ```
 
@@ -114,6 +116,7 @@ git commit -m "feat: add specific feature"
 - Reference relevant skills with @ syntax
 - DRY, YAGNI, TDD
 - Respect user's commit preference (session-wide)
+- Use superpowers:making-commits for commit steps (conventional format, sizing)
 
 ## Execution Handoff
 

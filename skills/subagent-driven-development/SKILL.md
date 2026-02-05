@@ -55,7 +55,7 @@ digraph when_to_use {
 
 **If Yes (or user doesn't specify):**
 - Pass `COMMIT_PREFERENCE: yes` to all subagents
-- Subagents commit after successful implementation
+- Subagents commit after successful implementation (using superpowers:making-commits for format)
 
 ### Question Style
 
@@ -277,6 +277,7 @@ Done!
 
 **Subagents should use:**
 - **superpowers:test-driven-development** - Subagents follow TDD for each task
+- **superpowers:making-commits** - Subagents use conventional commit format
 
 **Alternative workflow:**
 - **superpowers:executing-plans** - Use for parallel session instead of same-session execution

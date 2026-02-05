@@ -270,6 +270,7 @@ Resuming from: [current task]
 
 **Required sub-skills:**
 - `session-handoff` - for context management and session continuity
+- `making-commits` - for commit mechanics when `COMMIT_PREFERENCE` allows commits
 
 **Skills that should check for existing session preferences:**
 - `writing-plans` - check `COMMIT_PREFERENCE` and `QUESTION_STYLE` before asking

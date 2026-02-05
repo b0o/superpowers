@@ -629,8 +629,8 @@ Deploying untested skills = deploying untested code. It's a violation of quality
 - [ ] Supporting files only for tools or heavy reference
 
 **Deployment:**
-- [ ] Commit skill to git (only if user opted in to commits this session)
-- [ ] Push to your fork if configured
+- [ ] Commit skill using superpowers:making-commits (only if user opted in to commits)
+- [ ] Push to your fork if configured (ask first using question tool per making-commits)
 - [ ] Consider contributing back via PR (if broadly useful)
 
 ## Discovery Workflow
